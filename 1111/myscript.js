@@ -20,3 +20,12 @@ app.mount('#services')
 //Get data from Server
 app.Services=[]
                 
+$.ajax({    
+    url: "/service",
+    method: "get",
+     dataType: "json",
+            success: function(data){       
+                //console.log(data);       
+                app.Services=data;    
+            } 
+        })
