@@ -1,0 +1,30 @@
+
+.carousel-inner {
+    height: 400px;
+    overflow: hidden;
+}
+
+/* 讓左右控制按鈕高度與箭頭完全垂直置中 */
+#demo .carousel-control-prev,
+#demo .carousel-control-next {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    height: 60px;
+}
+
+/* 確保圖片在固定高度下不變形 */
+#demo .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+body {
+    background-color: #f8f9fa;
+    background-image: url('../img/paper-bg.jpg');
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+}
