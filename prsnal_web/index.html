@@ -63,12 +63,31 @@
     </div>
     </header>
 
-    <main>
+    <main id="app">
         <div class="container-lg">
             <div class="row">
                 <div class="col-md-12 text-center my-2">
                     <h1>Welcome to My Personal Website</h1>
                     <p>This is a simple personal website built with HTML, CSS, and JavaScript.</p>
+                </div>
+            </div>
+            
+            <!-- 作品集卡片區塊 -->
+            <div class="row" v-if="works.length > 0">
+                <div class="col-md-4 mb-4" v-for="(work, index) in works" :key="index">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ work.title }}</h5>
+                            <p class="card-text"><strong>分類：</strong>{{ work.category }}</p>
+                            <p class="card-text">{{ work.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" v-else>
+                <div class="col-md-12 text-center my-4">
+                    <p>載入中...</p>
                 </div>
             </div>
         </div>
@@ -82,5 +101,27 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        const { createApp } = Vue;
+        
+        createApp({
+            data() {
+                return {
+                    works: []
+                }
+            },
+            mounted() {
+                fetch('/service')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.works = data;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching works:', error);
+                    });
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
